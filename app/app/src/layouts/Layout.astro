@@ -1,5 +1,8 @@
 ---
+import '@fontsource-variable/inter'
 import '~/styles/style.scss'
+
+import iconUrl from '~/assets/icon.png?url'
 
 export interface Props
 {
@@ -39,7 +42,7 @@ const {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 
-		<!-- <link rel="icon" href={ iconUrl } type="image/png+xml" /> -->
+		<link rel="icon" href={ iconUrl } type="image/png+xml" />
 
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}

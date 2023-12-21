@@ -1,14 +1,139 @@
 ---
+import { Image } from 'astro:assets'
+
 import Layout from '~/layouts/Layout.astro'
 
-const title = '404'
+import background from '~/assets/background.png'
+import bookmarkSvg from '~/assets/icons/bookmark.svg?raw'
+import discordSvg from '~/assets/icons/discord.svg?raw'
+
+const title = '2GETHER App'
 ---
 
 <Layout
 	title={ title }
 	lang="en"
+	socialUrl={Astro.site}
 >
 
-	<h1>{ title }</h1>
+	<main>
+		<div class="background">
+			<Image
+				src={ background }
+				alt={ `Background illustration for ${ title }` }
+				width={ 2560 } // 1440p
+			/>
+		</div>
+
+		<div class="content">
+
+			<div class="buttons">
+				<a href="https://2gether-asso.fr" class="button">
+					<Fragment set:html={ bookmarkSvg } />
+					Visit our website
+				</a>
+				<a href="https://discord.2gether-asso.fr" class="button">
+					<Fragment set:html={ discordSvg } />
+					Join our Discord
+				</a>
+			</div>
+
+		</div>
+	</main>
 
 </Layout>
+
+<style lang="scss">
+	main {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		color: #fff;
+		overflow-x: hidden;
+
+		a {
+			&, &:link, &:visited {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			&:hover, &:focus {
+				color: inherit;
+				text-decoration: underline;
+			}
+		}
+
+		.background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			z-index: -1;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: 50% 0; // top center
+			}
+		}
+
+		.content {
+			--background-color: rgba(0, 0, 0, .2);
+			background-color: var(--background-color);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 2rem;
+			padding: 2rem;
+			box-shadow: 0 0 4rem 4rem var(--background-color);
+
+			> * {
+				margin: 0;
+			}
+
+			.buttons {
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				gap: 1rem;
+
+				> .button {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: .5rem;
+					padding: 1rem;
+					border-radius: 2rem;
+					background-color: rgba(0, 0, 0, .2);
+					transition:
+						background-color .2s ease-in-out,
+						color .2s ease-in-out;
+
+					&:hover, &:focus {
+						text-decoration: none;
+					}
+
+					&:hover {
+						background-color: rgba(0, 0, 0, .6);
+						color: #e6ac00;
+					}
+
+					> :global(svg) {
+						width: 1em;
+						height: 1em;
+						fill: currentColor;
+						flex-shrink: 0;
+					}
+				}
+			}
+		}
+	}
+</style>
