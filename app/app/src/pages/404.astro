@@ -4,6 +4,8 @@ import { Image } from 'astro:assets'
 import Layout from '~/layouts/Layout.astro'
 
 import background from '~/assets/background.png'
+import closeSvg from '~/assets/icons/close.svg?raw'
+import infoSvg from '~/assets/icons/info.svg?raw'
 import bookmarkSvg from '~/assets/icons/bookmark.svg?raw'
 import discordSvg from '~/assets/icons/discord.svg?raw'
 
@@ -15,6 +17,24 @@ const title = '2GETHER App'
 	lang="en"
 	socialUrl={Astro.site}
 >
+
+	<div class="modal-wrapper" id="info-modal">
+		<div class="modal">
+			<div class="modal-close">
+				<Fragment set:html={ closeSvg } />
+				<!-- Close -->
+			</div>
+			<div class="modal-content">
+				<h2>What is { title }?</h2>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus cursus magna at libero tristique, faucibus ullamcorper orci volutpat. Integer aliquet nulla ut ante porttitor faucibus. Sed faucibus consectetur pellentesque. Proin malesuada purus vel posuere sollicitudin. Donec vel efficitur magna. Nullam vel convallis tortor. Sed eu scelerisque purus, vitae iaculis felis.
+				</p>
+				<p>
+					Donec suscipit nisi et tincidunt eleifend. Mauris sed massa et magna interdum semper a quis neque. Etiam posuere volutpat mauris, consectetur cursus justo viverra vel. Nunc hendrerit sapien nec augue porta, sed congue est ornare.
+				</p>
+			</div>
+		</div>
+	</div>
 
 	<main>
 		<div class="background">
@@ -28,6 +48,10 @@ const title = '2GETHER App'
 		<div class="content">
 
 			<div class="buttons">
+				<a href="#info" class="button" id="info-button">
+					<Fragment set:html={ infoSvg } />
+					What is { title }?
+				</a>
 				<a href="https://2gether-asso.fr" class="button">
 					<Fragment set:html={ bookmarkSvg } />
 					Visit our website
@@ -43,7 +67,125 @@ const title = '2GETHER App'
 
 </Layout>
 
+<script>
+	function addEventListenersModal(id)
+	{
+		const button = document.getElementById(`${id}-button`)
+		const modal = document.getElementById(`${id}-modal`)
+
+		if (!button || !modal)
+		{
+			return
+		}
+
+		button.addEventListener('click', event =>
+			{
+				event.preventDefault()
+				modal.classList.add('open')
+			})
+
+		modal.addEventListener('click', event =>
+			{
+				if (
+					event.target === modal ||
+					(event.target as HTMLElement | null)?.closest('.modal-close')
+				)
+				{
+					modal.classList.remove('open')
+				}
+			})
+	}
+
+	addEventListenersModal('info')
+
+	window.addEventListener('keydown', event =>
+		{
+			if (event.key === 'Escape')
+			{
+				const openedModals = document.querySelectorAll('.modal-wrapper.open')
+				if (openedModals.length > 0)
+				{
+					event.preventDefault()
+					event.stopPropagation()
+
+					openedModals.forEach(modal =>
+						{
+							modal.classList.remove('open')
+						})
+
+					return
+				}
+			}
+		})
+</script>
+
 <style lang="scss">
+	.modal-wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0, 0, 0, .4);
+		z-index: 1;
+		overflow-x: hidden;
+
+		&.open {
+			display: flex;
+		}
+
+		.modal {
+			position: relative;
+			width: 100%;
+			max-height: calc(100% - 4rem);
+			overflow-x: hidden;
+			overflow-y: auto;
+			padding: 2rem;
+			background-color: #fff;
+			box-shadow: 0 0 4rem 4rem rgba(0, 0, 0, .2);
+
+			@media screen and (min-width: calc(300px)) {
+				max-width: calc(300px - 4rem);
+				margin: 0 auto;
+				border-radius: 2rem;
+			}
+
+			@media screen and (min-width: calc(300px + 4rem)) {
+				max-width: 600px;
+				margin: 0 2rem;
+			}
+
+			.modal-close {
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 1rem;
+				cursor: pointer;
+				z-index: 1;
+
+				> :global(svg) {
+					width: 1.5rem;
+					height: 1.5rem;
+					fill: currentColor;
+					flex-shrink: 0;
+				}
+			}
+
+			.modal-content {
+				h2 {
+					margin: 0 1.5rem 1rem 0;
+				}
+
+				p {
+					margin: 0 0 1rem;
+				}
+			}
+		}
+	}
+
 	main {
 		position: relative;
 		display: flex;
