@@ -6,4 +6,4 @@ const locale =
 } as const
 
 // Static type check
-export default locale satisfies I18n
+export default locale satisfies Partial<I18n>
