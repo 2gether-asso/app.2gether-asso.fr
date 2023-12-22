@@ -8,16 +8,16 @@ const defaultLocale =
 ] as const
 
 type Keys = typeof defaultLocale[number]
-type Type = Record<Keys, Keys>
+type Type = { [key in Keys]: key }
 
 // Default locale uses the key as the value
 const locale = defaultLocale
-	.reduce<Partial<Type>>((acc, key) =>
+	.reduce((acc, key) =>
 		{
 			acc[key] = key
 			return acc
 		},
 		{},
-	)
+	) as Type
 
 export default locale as Readonly<Type>
