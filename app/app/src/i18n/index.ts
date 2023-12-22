@@ -1,5 +1,5 @@
-import en from './en'
-import fr from './fr'
+import en from './locales/en'
+import fr from './locales/fr'
 import I18n from './type'
 
 const locales = { en, fr } as const

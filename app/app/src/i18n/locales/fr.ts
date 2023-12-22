@@ -1,4 +1,4 @@
-import I18n from './type'
+import I18n from '../type'
 
 const locale =
 {

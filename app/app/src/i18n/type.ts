@@ -1,4 +1,4 @@
-import defaultLocale from './en'
+import defaultLocale from './locales/en'
 
 type I18n = Readonly<Record<keyof typeof defaultLocale, string>>
 
