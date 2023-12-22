@@ -17,4 +17,13 @@ function i18n(
 	)
 }
 
+type Tail<T extends any[]> = ((...args: T) => any) extends (arg: any, ...tail: infer U) => any ? U : never
+
+function i18nFactory(locale: Parameters<typeof i18n>[0])
+{
+	return (...args: Tail<Parameters<typeof i18n>>) => i18n(locale, ...args)
+}
+
 export default i18n
+
+export { i18nFactory }

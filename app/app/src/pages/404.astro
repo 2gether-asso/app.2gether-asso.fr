@@ -3,10 +3,8 @@ import { Image } from 'astro:assets'
 
 import Layout from '~/layouts/Layout.astro'
 
-import i18n from '~/i18n'
-
-type Tail<T extends any[]> = ((...args: T) => any) extends (arg: any, ...tail: infer U) => any ? U : never
-const _ = (...args: Tail<Parameters<typeof i18n>>) => i18n(Astro.currentLocale, ...args)
+import { i18nFactory } from '~/i18n'
+const _ = i18nFactory(Astro.currentLocale)
 
 import background from '~/assets/background.png'
 import closeSvg from '~/assets/icons/close.svg?raw'
