@@ -11,6 +11,12 @@ function i18n(
 )
 {
 	const value = locales[locale]?.[key] ?? key
+
+	if (typeof value !== 'string')
+	{
+		return value
+	}
+
 	return value.replace(/{(\d+)}/g, (match, number) =>
 		typeof args[number] != 'undefined'
 			? args[number]
