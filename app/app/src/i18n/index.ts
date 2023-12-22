@@ -1,11 +1,12 @@
 import en from './en'
 import fr from './fr'
+import I18n from './type'
 
 const locales = { en, fr } as const
 
 function i18n(
 	locale: keyof typeof locales,
-	key: keyof typeof locales[typeof locale],
+	key: keyof I18n,
 	...args: string[]
 )
 {

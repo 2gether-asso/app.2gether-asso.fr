@@ -28,12 +28,12 @@ const title = '2GETHER App'
 				<!-- Close -->
 			</div>
 			<div class="modal-content">
-				<h2>What is { title }?</h2>
+				<h2>{_('What is {0}?', title)}</h2>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus cursus magna at libero tristique, faucibus ullamcorper orci volutpat. Integer aliquet nulla ut ante porttitor faucibus. Sed faucibus consectetur pellentesque. Proin malesuada purus vel posuere sollicitudin. Donec vel efficitur magna. Nullam vel convallis tortor. Sed eu scelerisque purus, vitae iaculis felis.
+					{_('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus cursus magna at libero tristique, faucibus ullamcorper orci volutpat. Integer aliquet nulla ut ante porttitor faucibus. Sed faucibus consectetur pellentesque. Proin malesuada purus vel posuere sollicitudin. Donec vel efficitur magna. Nullam vel convallis tortor. Sed eu scelerisque purus, vitae iaculis felis.')}
 				</p>
 				<p>
-					Donec suscipit nisi et tincidunt eleifend. Mauris sed massa et magna interdum semper a quis neque. Etiam posuere volutpat mauris, consectetur cursus justo viverra vel. Nunc hendrerit sapien nec augue porta, sed congue est ornare.
+					{_('Donec suscipit nisi et tincidunt eleifend. Mauris sed massa et magna interdum semper a quis neque. Etiam posuere volutpat mauris, consectetur cursus justo viverra vel. Nunc hendrerit sapien nec augue porta, sed congue est ornare.')}
 				</p>
 			</div>
 		</div>
@@ -57,11 +57,11 @@ const title = '2GETHER App'
 				</a>
 				<a href="https://2gether-asso.fr" class="button">
 					<Fragment set:html={ bookmarkSvg } />
-					Visit our website
+					{_('Visit our website')}
 				</a>
 				<a href="https://discord.2gether-asso.fr" class="button">
 					<Fragment set:html={ discordSvg } />
-					Join our Discord
+					{_('Join our Discord')}
 				</a>
 			</div>
 
