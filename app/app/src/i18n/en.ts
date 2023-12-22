@@ -3,9 +3,12 @@ const defaultLocale =
 	'What is {0}?',
 ] as const
 
+type Keys = typeof defaultLocale[number]
+type Type = Record<Keys, Keys>
+
 // Default locale uses the key as the value
 const locale = defaultLocale
-	.reduce<Record<string, string>>((acc, key) =>
+	.reduce<Partial<Type>>((acc, key) =>
 		{
 			acc[key] = key
 			return acc
@@ -13,5 +16,4 @@ const locale = defaultLocale
 		{},
 	)
 
-// Static type checking: key === value
-export default locale satisfies Record<keyof typeof locale, keyof typeof locale>
+export default locale as Readonly<Type>

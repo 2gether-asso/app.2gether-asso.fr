@@ -1,6 +1,9 @@
 import I18n from './type'
 
-export default
+const locale =
 {
 	'What is {0}?': 'Qu\'est-ce que {0} ?',
-} as const satisfies Partial<I18n>
+} as const
+
+// Static type check
+export default locale satisfies I18n
