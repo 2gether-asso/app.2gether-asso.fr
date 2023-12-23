@@ -1,8 +1,10 @@
 {
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
+	"target": "es2022",
     "baseUrl": ".",
     "paths": {
+      "/*": [ "*" ],
       "~/*": [ "src/*" ],
     }
   }
