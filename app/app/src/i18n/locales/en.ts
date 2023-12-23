@@ -18,4 +18,4 @@ const locale = defaultLocale
 		{},
 	) as Type
 
-export default locale as Readonly<Type>
+export default locale as Readonly<typeof locale>
