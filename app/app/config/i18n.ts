@@ -1,9 +1,9 @@
 const i18n =
 {
-	defaultLocale: "en",
+	defaultLocale: 'en',
 	locales: [
-		"en",
-		"fr",
+		'en',
+		'fr',
 	],
 	routing: {
 		prefixDefaultLocale: false,
