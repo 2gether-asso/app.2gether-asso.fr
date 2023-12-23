@@ -54,9 +54,10 @@ function getLocaleByPath(path: string): string | undefined
 	return undefined
 }
 
-function getLocaleByUrl(url: URL): string | undefined
+function getLocaleByUrl(url: URL | string): string | undefined
 {
-	for (const part of url.pathname.split('/'))
+	const urlParts = typeof url === 'string' ? url.split('/') : url.pathname.split('/')
+	for (const part of urlParts)
 	{
 		const locale = getLocaleByPath(part)
 		if (locale)
