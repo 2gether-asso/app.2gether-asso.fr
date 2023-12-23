@@ -10,10 +10,12 @@ type I18n = Readonly<Record<keyof typeof defaultLocaleData, string>>
 
 type Diff<T, U> = T extends U ? never : T
 
-export default I18n
-
 export {
 	defaultLocale,
 	defaultLocaleKey,
+}
+
+export type {
+	I18n,
 	Diff,
 }
