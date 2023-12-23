@@ -1,10 +1,22 @@
 const defaultLocale =
 [
-	'What is {0}?',
+	'What\'s up on 2GETHER in 2024?',
 	'Visit our website',
 	'Join our Discord',
-	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus cursus magna at libero tristique, faucibus ullamcorper orci volutpat. Integer aliquet nulla ut ante porttitor faucibus. Sed faucibus consectetur pellentesque. Proin malesuada purus vel posuere sollicitudin. Donec vel efficitur magna. Nullam vel convallis tortor. Sed eu scelerisque purus, vitae iaculis felis.',
-	'Donec suscipit nisi et tincidunt eleifend. Mauris sed massa et magna interdum semper a quis neque. Etiam posuere volutpat mauris, consectetur cursus justo viverra vel. Nunc hendrerit sapien nec augue porta, sed congue est ornare.',
+	'Over the next few years, 2GETHER is evolving!',
+	'On the agenda:',
+	'The 2GETHER bot always online!',
+	'Recurring giveaways coming back!',
+	'Special private or semi-private channels, called Bubbles!',
+	'The possibility for members to create activities!',
+	'Meet Up 2024',
+	'Events agenda redesign, with a monthly schedule to better organize ourselves!',
+	'Discord server overhaul to include mascots and improve ergonomics',
+	'New event types managed by members or consultants, such as quiz nights',
+	'Step-by-step launch of announced projects during 2MORROW',
+	'An activity time calculation system, transforming your time on 2GETHER into 2GETHER money!',
+	'2COINS will allow you to create activities, rent bubbles, participate in giveaways, place pixels on the place canvas, or other interactions on 2GETHER applications!',
+	'In short, a lot of things are coming in the next few years!',
 ] as const
 
 type Keys = typeof defaultLocale[number]
@@ -20,4 +32,4 @@ const locale = defaultLocale
 		{},
 	) as Type
 
-export default locale as Readonly<Type>
+export default locale as Readonly<typeof locale>

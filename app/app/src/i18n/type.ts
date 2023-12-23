@@ -8,9 +8,12 @@ const defaultLocaleKey = 'en' as const
 
 type I18n = Readonly<Record<keyof typeof defaultLocaleData, string>>
 
+type Diff<T, U> = T extends U ? never : T
+
 export default I18n
 
 export {
 	defaultLocale,
 	defaultLocaleKey,
+	Diff,
 }
