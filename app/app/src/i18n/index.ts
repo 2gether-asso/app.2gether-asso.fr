@@ -69,6 +69,33 @@ function getLocaleByUrl(url: URL | string): string | undefined
 	return undefined
 }
 
+function getUrlWithoutLocale(url: URL | string): string | undefined
+{
+	const urlPathnames = []
+	const urlParts = typeof url === 'string' ? url.split('/') : url.pathname.split('/')
+
+	let i = 0
+	while (i < urlParts.length)
+	{
+		const locale = getLocaleByPath(urlParts[i])
+		if (locale)
+		{
+			i++
+			continue
+		}
+
+		urlPathnames.push(urlParts[i])
+		i++
+	}
+	while (i < urlParts.length)
+	{
+		urlPathnames.push(urlParts[i])
+		i++
+	}
+
+	return urlPathnames.join('/')
+}
+
 export default i18n
 
 export {
@@ -76,4 +103,5 @@ export {
 	i18nFactory,
 	getLocaleByPath,
 	getLocaleByUrl,
+	getUrlWithoutLocale,
 }
