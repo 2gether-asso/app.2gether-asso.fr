@@ -12,6 +12,8 @@ import closeSvg from '~/assets/icons/close.svg?raw'
 import infoSvg from '~/assets/icons/info.svg?raw'
 import bookmarkSvg from '~/assets/icons/bookmark.svg?raw'
 import discordSvg from '~/assets/icons/discord.svg?raw'
+import flagFRSvg from '~/assets/icons/flag-fr.svg?raw'
+import flagENSvg from '~/assets/icons/flag-en.svg?raw'
 
 const title = '2GETHER App'
 ---
@@ -74,9 +76,19 @@ const title = '2GETHER App'
 							return
 						}
 
+						const flagSvg =
+							urlLocale === 'fr' ? flagFRSvg :
+							urlLocale === 'en' ? flagENSvg :
+							null
+
 						return (
 							<a href={url} class="button">
-								{urlLocale}
+								{flagSvg
+									&& (
+										<Fragment set:html={ flagSvg } />
+									)
+									|| urlLocale
+								}
 							</a>
 						)
 					})
