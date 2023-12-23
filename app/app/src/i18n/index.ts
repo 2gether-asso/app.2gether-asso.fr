@@ -1,3 +1,5 @@
+import { getAbsoluteLocaleUrlList } from 'astro:i18n'
+
 import i18nConfig from '/config/i18n'
 
 import en from './locales/en'
@@ -100,6 +102,26 @@ function getUrlWithoutLocale(url: URL | string): string
 	return urlPathnames.join('/')
 }
 
+function getLocaleUrlList(url: URL | string, excludeLocale?: string): { locale: string, url: string }[]
+{
+	const pathname = typeof url === 'string' ? url : url.pathname
+	const list =
+		(getAbsoluteLocaleUrlList(getUrlWithoutLocale(pathname)) as string[])
+			.map(url =>
+				({
+					locale: getLocaleByUrl(url),
+					url,
+				})
+			)
+
+	if (excludeLocale !== undefined)
+	{
+		return list.filter(({ locale }) => locale !== excludeLocale)
+	}
+
+	return list
+}
+
 export default i18n
 
 export {
@@ -109,4 +131,5 @@ export {
 	getLocaleByPath,
 	getLocaleByUrl,
 	getUrlWithoutLocale,
+	getLocaleUrlList,
 }
