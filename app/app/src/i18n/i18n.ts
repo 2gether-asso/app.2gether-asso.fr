@@ -18,9 +18,10 @@ function i18n(
 	}
 
 	return value.replace(/{(\d+)}/g, (match, number) =>
-		typeof args[number] != 'undefined'
-			? args[number]
-			: match
+		{
+			const index = Number.parseInt(number)
+			return args[index] ?? match
+		}
 	)
 }
 
