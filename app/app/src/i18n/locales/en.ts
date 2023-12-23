@@ -24,12 +24,12 @@ type Type = { [key in Keys]: key }
 
 // Default locale uses the key as the value
 const locale = defaultLocale
-	.reduce((acc, key) =>
+	.reduce<Type>((acc, key) =>
 		{
-			acc[key] = key
+			(acc as any)[key] = key
 			return acc
 		},
-		{},
-	) as Type
+		{} as Type,
+	)
 
 export default locale as Readonly<typeof locale>
