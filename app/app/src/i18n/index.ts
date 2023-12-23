@@ -4,6 +4,8 @@ import en from './locales/en'
 import fr from './locales/fr'
 import I18n, { defaultLocaleKey } from './type'
 
+const defaultLocale = i18nConfig.defaultLocale
+
 const locales = { en, fr } as const
 
 function i18n(
@@ -99,6 +101,7 @@ function getUrlWithoutLocale(url: URL | string): string | undefined
 export default i18n
 
 export {
+	defaultLocale,
 	defaultLocaleKey,
 	i18nFactory,
 	getLocaleByPath,
