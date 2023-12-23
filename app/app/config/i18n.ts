@@ -8,6 +8,18 @@ const i18n =
 	routing: {
 		prefixDefaultLocale: false,
 	},
-} as const
+} as {
+	readonly defaultLocale: string,
+	readonly locales: readonly (
+		| string
+		| {
+			readonly codes: readonly string[],
+			readonly path: string,
+		}
+	)[],
+	readonly routing: {
+		readonly prefixDefaultLocale: boolean,
+	}
+}
 
 export default i18n
