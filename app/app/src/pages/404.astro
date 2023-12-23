@@ -1,10 +1,9 @@
 ---
 import { Image } from 'astro:assets'
-import { getAbsoluteLocaleUrlList } from 'astro:i18n'
 
 import Layout from '~/layouts/Layout.astro'
 
-import { i18nFactory, getLocaleByUrl, getUrlWithoutLocale } from '~/i18n'
+import { i18nFactory, getLocaleUrlList } from '~/i18n'
 const _ = i18nFactory(Astro.currentLocale)
 
 import background from '~/assets/background.png'
@@ -66,19 +65,11 @@ const title = '2GETHER App'
 					<Fragment set:html={ discordSvg } />
 					{_('Join our Discord')}
 				</a>
-
-				{Array.from(getAbsoluteLocaleUrlList(getUrlWithoutLocale(Astro.url.pathname))).map((url: string) =>
+				{getLocaleUrlList(Astro.url, Astro.currentLocale).map(({ locale, url }) =>
 					{
-						const urlLocale = getLocaleByUrl(url)
-						if (urlLocale === Astro.currentLocale)
-						{
-							// Ignore for current locale
-							return
-						}
-
 						const flagSvg =
-							urlLocale === 'fr' ? flagFRSvg :
-							urlLocale === 'en' ? flagENSvg :
+							locale === 'fr' ? flagFRSvg :
+							locale === 'en' ? flagENSvg :
 							null
 
 						return (
@@ -87,7 +78,7 @@ const title = '2GETHER App'
 									&& (
 										<Fragment set:html={ flagSvg } />
 									)
-									|| urlLocale
+									|| locale
 								}
 							</a>
 						)
