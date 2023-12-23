@@ -56,7 +56,9 @@ function getLocaleByPath(path: string): string | undefined
 	return undefined
 }
 
-function getLocaleByUrl(url: URL | string): string | undefined
+function getLocaleByUrl(url: URL | string, fallback?: true): string
+function getLocaleByUrl(url: URL | string, fallback: false): string | undefined
+function getLocaleByUrl(url: URL | string, fallback: boolean = true): string | undefined
 {
 	const urlParts = typeof url === 'string' ? url.split('/') : url.pathname.split('/')
 	for (const part of urlParts)
@@ -68,10 +70,10 @@ function getLocaleByUrl(url: URL | string): string | undefined
 		}
 	}
 
-	return undefined
+	return fallback ? defaultLocale : undefined
 }
 
-function getUrlWithoutLocale(url: URL | string): string | undefined
+function getUrlWithoutLocale(url: URL | string): string
 {
 	const urlPathnames = []
 	const urlParts = typeof url === 'string' ? url.split('/') : url.pathname.split('/')
