@@ -4,7 +4,7 @@ import { Image } from 'astro:assets'
 import Layout from '~/layouts/Layout.astro'
 
 import { i18nFactory, getLocaleUrlList } from '~/i18n'
-const _ = i18nFactory(Astro.currentLocale)
+const _ = i18nFactory(Astro.currentLocale as any)
 
 import background from '~/assets/background.png'
 import closeSvg from '~/assets/icons/close.svg?raw'
@@ -108,7 +108,7 @@ const title = '2GETHER App'
 </Layout>
 
 <script>
-	function addEventListenersModal(id)
+	function addEventListenersModal(id: string)
 	{
 		const button = document.getElementById(`${id}-button`)
 		const modal = document.getElementById(`${id}-modal`)
