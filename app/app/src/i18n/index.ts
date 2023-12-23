@@ -54,10 +54,25 @@ function getLocaleByPath(path: string): string | undefined
 	return undefined
 }
 
+function getLocaleByUrl(url: URL): string | undefined
+{
+	for (const part of url.pathname.split('/'))
+	{
+		const locale = getLocaleByPath(part)
+		if (locale)
+		{
+			return locale
+		}
+	}
+
+	return undefined
+}
+
 export default i18n
 
 export {
 	defaultLocaleKey,
 	i18nFactory,
 	getLocaleByPath,
+	getLocaleByUrl,
 }
