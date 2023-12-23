@@ -2,7 +2,7 @@ import I18n from '../type'
 
 const locale =
 {
-	'What is {0}?': 'Qu\'est-ce que {0} ?',
+	'What\'s up on 2GETHER in 2024?': 'Quoi de neuf sur 2GETHER en 2024 ?',
 	'Visit our website': 'Visite notre site web',
 	'Join our Discord': 'Rejoins notre Discord',
 } as const
