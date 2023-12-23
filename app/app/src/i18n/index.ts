@@ -1,6 +1,6 @@
 import en from './locales/en'
 import fr from './locales/fr'
-import I18n from './type'
+import I18n, { defaultLocaleKey } from './type'
 
 const locales = { en, fr } as const
 
@@ -33,4 +33,7 @@ function i18nFactory(locale: Parameters<typeof i18n>[0])
 
 export default i18n
 
-export { i18nFactory }
+export {
+	defaultLocaleKey,
+	i18nFactory,
+}
