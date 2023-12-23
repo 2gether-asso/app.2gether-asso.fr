@@ -1,9 +1,10 @@
 ---
 import { Image } from 'astro:assets'
+import { getAbsoluteLocaleUrlList } from 'astro:i18n'
 
 import Layout from '~/layouts/Layout.astro'
 
-import { i18nFactory } from '~/i18n'
+import { defaultLocaleKey, i18nFactory, getLocaleByUrl, getUrlWithoutLocale } from '~/i18n'
 const _ = i18nFactory(Astro.currentLocale)
 
 import background from '~/assets/background.png'
@@ -63,6 +64,23 @@ const title = '2GETHER App'
 					<Fragment set:html={ discordSvg } />
 					{_('Join our Discord')}
 				</a>
+
+				{Array.from(getAbsoluteLocaleUrlList(getUrlWithoutLocale(Astro.url.pathname))).map((url: string) =>
+					{
+						const urlLocale = getLocaleByUrl(url) ?? defaultLocaleKey
+						if (urlLocale === Astro.currentLocale)
+						{
+							// Ignore for current locale
+							return
+						}
+
+						return (
+							<a href={url} class="button">
+								{urlLocale}
+							</a>
+						)
+					})
+				}
 			</div>
 
 		</div>
