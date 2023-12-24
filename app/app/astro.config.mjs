@@ -4,7 +4,6 @@ import i18n from './config/i18n'
 
 // https://astro.build/config
 export default defineConfig({
-	trailingSlash: 'never',
 	vite: {
 		server: {
 			watch: {
