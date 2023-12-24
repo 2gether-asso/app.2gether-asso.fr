@@ -8,7 +8,7 @@ function getUrlWithoutLocale(url: URL | string): string
 	let i = 0
 	while (i < urlParts.length)
 	{
-		const locale = getLocaleByPath(urlParts[i])
+		const locale = getLocaleByPath(urlParts[i] as string)
 		if (locale)
 		{
 			i++

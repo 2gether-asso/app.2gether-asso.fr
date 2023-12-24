@@ -1,6 +1,6 @@
 import en from './locales/en'
 import fr from './locales/fr'
-import I18n from './type'
+import type { I18n } from './type'
 
 const locales = { en, fr } as const
 
@@ -18,9 +18,10 @@ function i18n(
 	}
 
 	return value.replace(/{(\d+)}/g, (match, number) =>
-		typeof args[number] != 'undefined'
-			? args[number]
-			: match
+		{
+			const index = Number.parseInt(number)
+			return args[index] ?? match
+		}
 	)
 }
 

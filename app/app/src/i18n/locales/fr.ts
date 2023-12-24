@@ -1,4 +1,4 @@
-import I18n, { Diff } from '../type'
+import type { I18n, Diff } from '../type'
 
 const locale =
 {
